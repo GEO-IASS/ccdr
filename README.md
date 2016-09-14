@@ -4,11 +4,7 @@ ccdr
 
 `ccdr` implements the CCDr structure learning algorithm described in \[[1](#references)\]. Based on observational data, this algorithm estimates the structure of a Bayesian network (aka edges in a DAG) using penalized maximum likelihood based on L1 or concave (MCP) regularization.
 
-Presently, this package consists of a single method that implements the main algorithm; more functionality will be provided in the future. To generate data from a given Bayesian network and/or simulate random networks, the following R packages are recommended:
-
--   `bnlearn`: [bnlearn on CRAN](http://cran.r-project.org/web/packages/bnlearn/index.html), [www.bnlearn.com](http://www.bnlearn.com)
--   `pcalg`: [pcalg on CRAN](http://cran.r-project.org/web/packages/pcalg/index.html)
--   `igraph`: [igraph on CRAN](http://cran.r-project.org/web/packages/igraph/index.html), [<http://igraph.org/r/>](http://igraph.org/r/)
+**Important note:** This legacy package consists of a single method that implements the main algorithm and is not actively maintained. The main purpose of this repo is to serve as a reproducible snapshot for the simulations in \[[1](#references)\].
 
 Installation
 ============
@@ -30,7 +26,7 @@ if (packageVersion("devtools") < 1.6) {
 if(devtools::find_rtools()) devtools::install_github("itsrainingdata/ccdr")
 ```
 
-**NOTE:** Windows users will need to make sure that Rtools is installed in order to build this package. To check if you have Rtools installed, you can use `devtools::find_rtools()`. For more details: [<http://cran.r-project.org/bin/windows/Rtools/>](http://cran.r-project.org/bin/windows/Rtools/).
+**NOTE:** Windows users will need to make sure that Rtools is installed in order to build this package. To check if you have Rtools installed, you can use `devtools::find_rtools()`. For more details: <http://cran.r-project.org/bin/windows/Rtools/>.
 
 If you find any bugs, please report them here on [github](https://github.com/itsrainingdata/ccdr/issues).
 
@@ -56,7 +52,11 @@ print(ccdr.path)
 
 The output of `ccdr.run` is an S3 object `ccdrPath`, which is essentially a list of estimates, one for each value of lambda in the solution path. Each estimate is an S3 object `ccdrFit`. The DAG itself is stored as an edge list (see documentation for `ccdrFit-class` and `edgeList-class` for more details).
 
-This trivial example uses uncorrelated normal data, which is not very interesting. In order to do some interesting calculations, we first need to generate data according to some pre-specified DAG structure. The `ccdr` package does not provide this functionality: You can use either the `bnlearn` package or the `pcalg` package to generate random DAGs and random data.
+This trivial example uses uncorrelated normal data, which is not very interesting. In order to do some interesting calculations, we first need to generate data according to some pre-specified DAG structure. The `ccdr` package does not provide this functionality: To generate data from a given Bayesian network and/or simulate random networks, the following R packages are recommended:
+
+-   `bnlearn`: [bnlearn on CRAN](http://cran.r-project.org/web/packages/bnlearn/index.html), [www.bnlearn.com](http://www.bnlearn.com)
+-   `pcalg`: [pcalg on CRAN](http://cran.r-project.org/web/packages/pcalg/index.html)
+-   `igraph`: [igraph on CRAN](http://cran.r-project.org/web/packages/igraph/index.html), <http://igraph.org/r/>
 
 Example using `pcalg`
 ---------------------
